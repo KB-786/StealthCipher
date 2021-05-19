@@ -31,11 +31,11 @@ namespace StealthCipher
                         GC.Collect();
                         btn_finish.Enabled = false;*/
 
-                        /*string pwd = form.getPassword();
+                        string pwd = form.getPassword();
                         DES des = new DES();
                         des.DecryptFile(textBox1.Text, pwd);
                         GC.Collect();
-                        btn_finish.Enabled = false;*/
+                        btn_finish.Enabled = false;
                     }
                     catch (Exception ex)
                     {

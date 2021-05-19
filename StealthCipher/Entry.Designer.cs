@@ -41,17 +41,18 @@ namespace StealthCipher
             // label1
             // 
             this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(10, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(581, 432);
+            this.label1.Size = new System.Drawing.Size(508, 324);
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             // 
             // btn_encrypt
             // 
-            this.btn_encrypt.Location = new System.Drawing.Point(599, 9);
+            this.btn_encrypt.Location = new System.Drawing.Point(524, 7);
+            this.btn_encrypt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_encrypt.Name = "btn_encrypt";
-            this.btn_encrypt.Size = new System.Drawing.Size(189, 58);
+            this.btn_encrypt.Size = new System.Drawing.Size(165, 44);
             this.btn_encrypt.TabIndex = 1;
             this.btn_encrypt.Text = "Encrypt";
             this.btn_encrypt.UseVisualStyleBackColor = true;
@@ -59,9 +60,10 @@ namespace StealthCipher
             // 
             // btn_decrypt
             // 
-            this.btn_decrypt.Location = new System.Drawing.Point(599, 73);
+            this.btn_decrypt.Location = new System.Drawing.Point(524, 55);
+            this.btn_decrypt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_decrypt.Name = "btn_decrypt";
-            this.btn_decrypt.Size = new System.Drawing.Size(189, 56);
+            this.btn_decrypt.Size = new System.Drawing.Size(165, 42);
             this.btn_decrypt.TabIndex = 2;
             this.btn_decrypt.Text = "Decrypt";
             this.btn_decrypt.UseVisualStyleBackColor = true;
@@ -70,9 +72,9 @@ namespace StealthCipher
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(666, 421);
+            this.linkLabel1.Location = new System.Drawing.Point(583, 316);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(68, 20);
+            this.linkLabel1.Size = new System.Drawing.Size(55, 15);
             this.linkLabel1.TabIndex = 3;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "About us";
@@ -80,15 +82,16 @@ namespace StealthCipher
             // 
             // entry
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(700, 338);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.btn_decrypt);
             this.Controls.Add(this.btn_encrypt);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "entry";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

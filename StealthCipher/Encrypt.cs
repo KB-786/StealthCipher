@@ -42,11 +42,11 @@ namespace StealthCipher
                         {
                             try
                             {
-                                /*String pwd = form.getPassword();
+                                String pwd = form.getPassword();
                                 DES des = new DES();
                                 des.EncryptFile(textBox1.Text, pwd);
                                 GC.Collect();
-                                btn_finish.Enabled = false;*/
+                                btn_finish.Enabled = false;
                             }
                             catch (Exception ex)
                             {
