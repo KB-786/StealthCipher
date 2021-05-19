@@ -28,15 +28,61 @@ namespace StealthCipher
         {
 			if (textBox1.Text.Length != 0)
 			{
-				if (checkBox1.Checked == true || checkBox2.Checked == true || checkBox3.Checked == true || checkBox4.Checked == true || checkBox5.Checked == true)
-				{
-					EncPassword form = new EncPassword();
-					form.ShowDialog();
-					if (form.okClicked())
-					{
-						label9.Text = form.getPassword();
-						btn_finish.Enabled = false;					}
-				}
+                if (checkBox1.Checked == true || checkBox2.Checked == true || checkBox3.Checked == true || checkBox4.Checked == true || checkBox5.Checked == true)
+                {
+                    EncPassword form = new EncPassword();
+                    form.ShowDialog();
+                    if (checkBox1.Checked == true)  //AES
+                    {
+
+                    }
+                    if (checkBox2.Checked == true)  //DES
+                    {
+                        if (form.okClicked())
+                        {
+                            try
+                            {
+                                /*String pwd = form.getPassword();
+                                DES des = new DES();
+                                des.EncryptFile(textBox1.Text, pwd);
+                                GC.Collect();
+                                btn_finish.Enabled = false;*/
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                btn_finish.Enabled = true;
+                            }
+                        }
+                    }
+                    if (checkBox3.Checked == true)  //Triple DES
+                    {
+                        if (form.okClicked())
+                        {
+                            try
+                            {
+                                String pwd = form.getPassword();
+                                TripleDES tDES = new TripleDES(pwd);
+                                tDES.EncryptFile(textBox1.Text);
+                                GC.Collect();
+                                btn_finish.Enabled = false;
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                btn_finish.Enabled = true;
+                            }
+                        }
+                    }
+                    if (checkBox4.Checked == true)  //4
+                    {
+
+                    }
+                    if (checkBox5.Checked == true)  //5
+                    {
+
+                    }
+                }
 				else
 				{
 					MessageBox.Show("Please choose at least one encryption algorithm", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

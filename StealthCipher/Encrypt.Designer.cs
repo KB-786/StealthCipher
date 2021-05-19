@@ -29,6 +29,7 @@ namespace StealthCipher
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(encrypt));
             this.btn_addFile = new System.Windows.Forms.Button();
             this.btn_finish = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -67,7 +68,7 @@ namespace StealthCipher
             this.btn_finish.Name = "btn_finish";
             this.btn_finish.Size = new System.Drawing.Size(94, 29);
             this.btn_finish.TabIndex = 1;
-            this.btn_finish.Text = "Finish";
+            this.btn_finish.Text = "Encrypt";
             this.btn_finish.UseVisualStyleBackColor = true;
             this.btn_finish.Click += new System.EventHandler(this.btn_finish_Click);
             // 
@@ -120,6 +121,7 @@ namespace StealthCipher
             this.checkBox4.TabIndex = 22;
             this.checkBox4.Text = "checkBox4";
             this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.Visible = false;
             this.checkBox4.CheckStateChanged += new System.EventHandler(this.checkBox4_CheckStateChanged);
             // 
             // checkBox2
@@ -164,6 +166,7 @@ namespace StealthCipher
             this.checkBox5.TabIndex = 13;
             this.checkBox5.Text = "checkBox5";
             this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.Visible = false;
             this.checkBox5.CheckStateChanged += new System.EventHandler(this.checkBox5_CheckStateChanged);
             // 
             // label9
@@ -253,10 +256,11 @@ namespace StealthCipher
             this.Controls.Add(this.btn_addFile);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "encrypt";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "encrypt";
+            this.Text = "Encrypt";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

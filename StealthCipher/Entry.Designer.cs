@@ -29,10 +29,13 @@ namespace StealthCipher
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(entry));
             this.label1 = new System.Windows.Forms.Label();
             this.btn_encrypt = new System.Windows.Forms.Button();
             this.btn_decrypt = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -64,11 +67,23 @@ namespace StealthCipher
             this.btn_decrypt.UseVisualStyleBackColor = true;
             this.btn_decrypt.Click += new System.EventHandler(this.btn_decrypt_Click);
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(666, 421);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(68, 20);
+            this.linkLabel1.TabIndex = 3;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "About us";
+            this.linkLabel1.MouseHover += new System.EventHandler(this.linkLabel1_MouseHover);
+            // 
             // entry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.btn_decrypt);
             this.Controls.Add(this.btn_encrypt);
             this.Controls.Add(this.label1);
@@ -79,6 +94,7 @@ namespace StealthCipher
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StealthCipher";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -87,6 +103,8 @@ namespace StealthCipher
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_encrypt;
         private System.Windows.Forms.Button btn_decrypt;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

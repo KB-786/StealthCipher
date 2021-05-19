@@ -28,5 +28,10 @@ namespace StealthCipher
             decrypt dec = new decrypt();
             dec.ShowDialog();
         }
+
+        private void linkLabel1_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Firstly, Tell us something about you :)", linkLabel1);
+        }
     }
 }
