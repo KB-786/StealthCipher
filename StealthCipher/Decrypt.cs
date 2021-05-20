@@ -31,8 +31,14 @@ namespace StealthCipher
                         GC.Collect();
                         btn_finish.Enabled = false;*/
 
-                        string pwd = form.getPassword();
+                        /*String pwd = form.getPassword();
                         DES des = new DES();
+                        des.DecryptFile(textBox1.Text, pwd);
+                        GC.Collect();
+                        btn_finish.Enabled = false;*/
+
+                        String pwd = form.getPassword();
+                        AES des = new AES();
                         des.DecryptFile(textBox1.Text, pwd);
                         GC.Collect();
                         btn_finish.Enabled = false;

@@ -34,7 +34,22 @@ namespace StealthCipher
                     form.ShowDialog();
                     if (checkBox1.Checked == true)  //AES
                     {
-
+                        if (form.okClicked())
+                        {
+                            try
+                            {
+                                String pwd = form.getPassword();
+                                AES des = new AES();
+                                des.EncryptFile(textBox1.Text, pwd);
+                                GC.Collect();
+                                btn_finish.Enabled = false;
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                btn_finish.Enabled = true;
+                            }
+                        }
                     }
                     if (checkBox2.Checked == true)  //DES
                     {
