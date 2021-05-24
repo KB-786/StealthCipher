@@ -16,7 +16,7 @@ namespace StealthCipher
             byte[] plainContent = File.ReadAllBytes(filePath);
             using (var DES = new DESCryptoServiceProvider())
             {
-                DES.IV = Encoding.UTF8.GetBytes(key);
+                DES.IV = Encoding.UTF8.GetBytes(key);   //Integration Vector
                 DES.Key = Encoding.UTF8.GetBytes(key);
                 DES.Mode = CipherMode.CBC;
                 DES.Padding = PaddingMode.PKCS7;

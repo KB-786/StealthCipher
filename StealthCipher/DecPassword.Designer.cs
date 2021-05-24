@@ -70,8 +70,8 @@ namespace StealthCipher
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(259, 101);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Note : Please remember the passsword. In case the password is forgotten, the file" +
-    " would be irrecoverable.";
+            this.label2.Text = "Note : Good to see that you still remember your password. If you don\'t, then have" +
+    " a nice day !";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label2.Visible = false;
             // 

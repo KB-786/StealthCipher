@@ -25,21 +25,21 @@ namespace StealthCipher
                 {
                     try
                     {
-                        /*String pwd = form.getPassword();
+                        String pwd = form.getPassword();
+
+
                         TripleDES tDES = new TripleDES(pwd);
                         tDES.DecryptFile(textBox1.Text);
-                        GC.Collect();
-                        btn_finish.Enabled = false;*/
+                       
 
-                        /*String pwd = form.getPassword();
+                        String desPwd = pwd.Substring(0, 8);
                         DES des = new DES();
-                        des.DecryptFile(textBox1.Text, pwd);
-                        GC.Collect();
-                        btn_finish.Enabled = false;*/
+                        des.DecryptFile(textBox1.Text, desPwd);
 
-                        String pwd = form.getPassword();
-                        AES des = new AES();
+                        
+                        AES aes = new AES();
                         des.DecryptFile(textBox1.Text, pwd);
+
                         GC.Collect();
                         btn_finish.Enabled = false;
                     }

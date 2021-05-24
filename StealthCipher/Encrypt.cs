@@ -43,6 +43,9 @@ namespace StealthCipher
                                 des.EncryptFile(textBox1.Text, pwd);
                                 GC.Collect();
                                 btn_finish.Enabled = false;
+                                Close();
+                                Stegno steg = new Stegno(textBox1.Text,pwd);
+                                steg.ShowDialog();
                             }
                             catch (Exception ex)
                             {
@@ -58,8 +61,9 @@ namespace StealthCipher
                             try
                             {
                                 String pwd = form.getPassword();
+                                String desPwd = pwd.Substring(0, 8);
                                 DES des = new DES();
-                                des.EncryptFile(textBox1.Text, pwd);
+                                des.EncryptFile(textBox1.Text, desPwd);
                                 GC.Collect();
                                 btn_finish.Enabled = false;
                             }
