@@ -37,8 +37,16 @@ namespace StealthCipher
         {
             if (textBox1.Text.Length != 0)
             {
-                btn_submit.Enabled = false;
-                Close();
+                if(textBox1.Text.Length>=8)
+                {
+                    btn_submit.Enabled = false;
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("Password length should be minimum of 8 characters.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
             else
             {

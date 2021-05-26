@@ -34,6 +34,7 @@ namespace StealthCipher
             this.btn_finish = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Message = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_addFile
@@ -73,11 +74,23 @@ namespace StealthCipher
             this.textBox1.Size = new System.Drawing.Size(701, 27);
             this.textBox1.TabIndex = 10;
             // 
+            // Message
+            // 
+            this.Message.AutoSize = true;
+            this.Message.Location = new System.Drawing.Point(186, 413);
+            this.Message.Name = "Message";
+            this.Message.Size = new System.Drawing.Size(67, 20);
+            this.Message.TabIndex = 11;
+            this.Message.Text = "Message";
+            this.Message.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Message.Visible = false;
+            // 
             // decrypt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Message);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btn_finish);
@@ -99,5 +112,6 @@ namespace StealthCipher
         private System.Windows.Forms.Button btn_finish;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label Message;
     }
 }

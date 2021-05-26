@@ -26,6 +26,7 @@ namespace StealthCipher
 
         private void btn_finish_Click(object sender, EventArgs e)
         {
+            string sequence = "";
 			if (textBox1.Text.Length != 0)
 			{
                 if (checkBox1.Checked == true || checkBox2.Checked == true || checkBox3.Checked == true || checkBox4.Checked == true || checkBox5.Checked == true)
@@ -33,9 +34,9 @@ namespace StealthCipher
                     EncPassword form = new EncPassword();
                     form.ShowDialog();
                     string pwd = form.getPassword();
-                    if (checkBox1.Checked == true)  //AES
+                    if (form.okClicked())
                     {
-                        if (form.okClicked())
+                        if (checkBox1.Checked == true)  //AES
                         {
                             try
                             {
@@ -43,18 +44,15 @@ namespace StealthCipher
                                 des.EncryptFile(textBox1.Text, pwd);
                                 GC.Collect();
                                 btn_finish.Enabled = false;
-                                Close();
+                                sequence += "AES,";
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message);
+                                MessageBox.Show("AES:" + ex.Message);
                                 btn_finish.Enabled = true;
                             }
                         }
-                    }
-                    if (checkBox2.Checked == true)  //DES
-                    {
-                        if (form.okClicked())
+                        if (checkBox2.Checked == true)  //DES
                         {
                             try
                             {
@@ -63,17 +61,15 @@ namespace StealthCipher
                                 des.EncryptFile(textBox1.Text, desPwd);
                                 GC.Collect();
                                 btn_finish.Enabled = false;
+                                sequence += "DES,";
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message);
+                                MessageBox.Show("DES:" + ex.Message);
                                 btn_finish.Enabled = true;
                             }
                         }
-                    }
-                    if (checkBox3.Checked == true)  //Triple DES
-                    {
-                        if (form.okClicked())
+                        if (checkBox3.Checked == true)  //Triple DES
                         {
                             try
                             {
@@ -81,17 +77,15 @@ namespace StealthCipher
                                 tDES.EncryptFile(textBox1.Text);
                                 GC.Collect();
                                 btn_finish.Enabled = false;
+                                sequence += "3DES,";
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message);
+                                MessageBox.Show("TripleDES:" + ex.Message);
                                 btn_finish.Enabled = true;
                             }
                         }
-                    }
-                    if (checkBox4.Checked == true)  //Blowfish
-                    {
-                        if (form.okClicked())
+                        if (checkBox4.Checked == true)  //Blowfish
                         {
                             try
                             {
@@ -99,18 +93,15 @@ namespace StealthCipher
                                 bf.EncryptFile(textBox1.Text, pwd);
                                 GC.Collect();
                                 btn_finish.Enabled = false;
-                                Close();
+                                sequence += "Blowfish,";
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message);
+                                MessageBox.Show("Blowfish:" + ex.Message);
                                 btn_finish.Enabled = true;
                             }
                         }
-                    }
-                    if (checkBox5.Checked == true)  //RC4
-                    {
-                        if (form.okClicked())
+                        if (checkBox5.Checked == true)  //RC4
                         {
                             try
                             {
@@ -118,17 +109,18 @@ namespace StealthCipher
                                 rc4.EncryptFile(textBox1.Text, pwd);
                                 GC.Collect();
                                 btn_finish.Enabled = false;
-                                Close();
+                                sequence += "RC4";
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message);
+                                MessageBox.Show("RC4:" + ex.Message);
                                 btn_finish.Enabled = true;
                             }
                         }
+                        Close();
+                        Stegno steg = new Stegno(textBox1.Text, pwd, sequence);
+                        steg.ShowDialog();
                     }
-                    Stegno steg = new Stegno(textBox1.Text, pwd);
-                    steg.ShowDialog();
                 }
 				else
 				{

@@ -33,7 +33,7 @@ namespace StealthCipher
             this.btn_submit = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_submit
@@ -64,22 +64,22 @@ namespace StealthCipher
             this.label1.TabIndex = 2;
             this.label1.Text = "Enter password:";
             // 
-            // label2
+            // label3
             // 
-            this.label2.Location = new System.Drawing.Point(12, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(259, 101);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Note : Please remember the passsword. In case the password is forgotten, the file" +
-    " would be irrecoverable.";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label3.Location = new System.Drawing.Point(12, 62);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(259, 114);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Note: Password length should be minimum of 8 characters. Please remember the pass" +
+    "sword. In case the password is forgotten, the file would be irrecoverable.";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // EncPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(283, 255);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btn_submit);
@@ -100,6 +100,6 @@ namespace StealthCipher
         private System.Windows.Forms.Button btn_submit;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

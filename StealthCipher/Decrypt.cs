@@ -21,39 +21,96 @@ namespace StealthCipher
             {
                 DecPassword form = new DecPassword();
                 form.ShowDialog();
+
+                string sequence = "AES,DES,3DES,Blowfish,RC4";
+
                 if (form.okClicked())
                 {
-                    try
+                    string pwd = form.getPassword();
+                    //RC4
+                    if (sequence.Contains("RC4"))
                     {
-                        string pwd = form.getPassword();
-
-
-                        /*BlowfishMain bf = new BlowfishMain();
-                        bf.DecryptFile(textBox1.Text, pwd);*/
-
-                        RC4 rc4 = new RC4();
-                        rc4.DecryptFile(textBox1.Text, pwd);
-
-                        /*TripleDES tDES = new TripleDES(pwd);
-                        tDES.DecryptFile(textBox1.Text);
-                       
-
-                        String desPwd = pwd.Substring(0, 8);
-                        DES des = new DES();
-                        des.DecryptFile(textBox1.Text, desPwd);
-
-                        
-                        AES aes = new AES();
-                        aes.DecryptFile(textBox1.Text, pwd);*/
-
-                        GC.Collect();
-                        btn_finish.Enabled = false;
+                        try
+                        {
+                            RC4 rc4 = new RC4();
+                            rc4.DecryptFile(textBox1.Text, pwd);
+                            GC.Collect();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("RC4: " + ex.Message);
+                            btn_finish.Enabled = true;
+                        }
                     }
-                    catch (Exception ex)
+
+                    //Blowfish
+                    if (sequence.Contains("Blowfish"))
                     {
-                        MessageBox.Show(ex.Message);
-                        btn_finish.Enabled = true;
+                        try
+                        {
+                            BlowfishMain bf = new BlowfishMain();
+                            bf.DecryptFile(textBox1.Text, pwd);
+                            GC.Collect();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Blowfish: " + ex.Message);
+                            btn_finish.Enabled = true;
+                        }
                     }
+                    
+                    //TripleDES
+                    if (sequence.Contains("3DES"))
+                    {
+                        try
+                        {
+                            TripleDES tDES = new TripleDES(pwd);
+                            tDES.DecryptFile(textBox1.Text);
+                            GC.Collect();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("TripleDES: " + ex.Message);
+                            btn_finish.Enabled = true;
+                        }
+                    }
+
+                    //DES
+                    if (sequence.Contains("DES"))
+                    {
+                        try
+                        {
+                            String desPwd = pwd.Substring(0, 8);
+                            DES des = new DES();
+                            des.DecryptFile(textBox1.Text, desPwd);
+                            GC.Collect();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("DES: " + ex.Message);
+                            btn_finish.Enabled = true;
+                        }
+                    }
+                    
+                    //AES
+                    if (sequence.Contains("AES"))
+                    {
+                        try
+                        {
+                            AES aes = new AES();
+                            aes.DecryptFile(textBox1.Text, pwd);
+                            GC.Collect();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("AES: " + ex.Message);
+                            btn_finish.Enabled = true;
+                        }
+                    }
+                    
+                    btn_finish.Enabled = false;
+                    Message.Visible = true;
+                    Message.Text = "File decrypted !";
                 }
             }
             else
