@@ -31,8 +31,8 @@ namespace StealthCipher
                 if (checkBox1.Checked == true || checkBox2.Checked == true || checkBox3.Checked == true || checkBox4.Checked == true || checkBox5.Checked == true)
                 {
                     EncPassword form = new EncPassword();
-                    string pwd = form.getPassword();
                     form.ShowDialog();
+                    string pwd = form.getPassword();
                     if (checkBox1.Checked == true)  //AES
                     {
                         if (form.okClicked())
@@ -89,13 +89,43 @@ namespace StealthCipher
                             }
                         }
                     }
-                    if (checkBox4.Checked == true)  //4
+                    if (checkBox4.Checked == true)  //Blowfish
                     {
-
+                        if (form.okClicked())
+                        {
+                            try
+                            {
+                                BlowfishMain bf = new BlowfishMain();
+                                bf.EncryptFile(textBox1.Text, pwd);
+                                GC.Collect();
+                                btn_finish.Enabled = false;
+                                Close();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                btn_finish.Enabled = true;
+                            }
+                        }
                     }
-                    if (checkBox5.Checked == true)  //5
+                    if (checkBox5.Checked == true)  //RC4
                     {
-
+                        if (form.okClicked())
+                        {
+                            try
+                            {
+                                RC4 rc4 = new RC4();
+                                rc4.EncryptFile(textBox1.Text, pwd);
+                                GC.Collect();
+                                btn_finish.Enabled = false;
+                                Close();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                btn_finish.Enabled = true;
+                            }
+                        }
                     }
                     Stegno steg = new Stegno(textBox1.Text, pwd);
                     steg.ShowDialog();

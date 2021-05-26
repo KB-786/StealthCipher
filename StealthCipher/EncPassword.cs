@@ -19,7 +19,7 @@ namespace StealthCipher
         {
             
         }
-        public String getPassword()
+        public string getPassword()
         {
             if (btn_submit.Enabled == false)
                 return textBox1.Text;

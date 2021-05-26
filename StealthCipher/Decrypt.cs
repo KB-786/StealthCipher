@@ -25,10 +25,16 @@ namespace StealthCipher
                 {
                     try
                     {
-                        String pwd = form.getPassword();
+                        string pwd = form.getPassword();
 
 
-                        TripleDES tDES = new TripleDES(pwd);
+                        /*BlowfishMain bf = new BlowfishMain();
+                        bf.DecryptFile(textBox1.Text, pwd);*/
+
+                        RC4 rc4 = new RC4();
+                        rc4.DecryptFile(textBox1.Text, pwd);
+
+                        /*TripleDES tDES = new TripleDES(pwd);
                         tDES.DecryptFile(textBox1.Text);
                        
 
@@ -38,7 +44,7 @@ namespace StealthCipher
 
                         
                         AES aes = new AES();
-                        des.DecryptFile(textBox1.Text, pwd);
+                        aes.DecryptFile(textBox1.Text, pwd);*/
 
                         GC.Collect();
                         btn_finish.Enabled = false;
