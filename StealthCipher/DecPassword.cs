@@ -17,9 +17,48 @@ namespace StealthCipher
         public String getPassword()
         {
             if (btn_submit.Enabled == false)
-                return textBox1.Text;
+            {
+                //return textBox1.Text;
+                string pwd = padPassword(textBox1.Text);
+                return pwd;
+            }
             else
                 return "null";
+        }
+        private string padPassword(string pwd)
+        {
+            if (pwd.Length == 16)
+            {
+                return pwd;
+            }
+            byte[] newPwd = new byte[16];
+            byte[] oldPwd = Encoding.Default.GetBytes(pwd);
+            int padding = 16 - pwd.Length;
+            char[] arr = { '@', '%', '#', '&', '.', '*', ']', '-' };
+
+            int c = 0;
+            for (int i = 1; i < padding * 2; i += 2)
+            {
+                newPwd[i] = Convert.ToByte(arr[c]);
+                c++;
+            }
+            c = 0;
+            for (int i = 0; i < padding * 2; i += 2)
+            {
+                newPwd[i] = oldPwd[c];
+                c++;
+            }
+            if (padding * 2 != 16)
+            {
+                for (int i = padding * 2; i < 16; i++)
+                {
+                    newPwd[i] = oldPwd[c];
+                    c++;
+                }
+            }
+
+            string padPwd = Encoding.Default.GetString(newPwd);
+            return padPwd;
         }
         public bool okClicked()
         {

@@ -77,7 +77,7 @@ namespace StealthCipher
                                 tDES.EncryptFile(textBox1.Text);
                                 GC.Collect();
                                 btn_finish.Enabled = false;
-                                sequence += "3DES,";
+                                sequence += "3des,";
                             }
                             catch (Exception ex)
                             {
