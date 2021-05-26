@@ -31,6 +31,7 @@ namespace StealthCipher
                 if (checkBox1.Checked == true || checkBox2.Checked == true || checkBox3.Checked == true || checkBox4.Checked == true || checkBox5.Checked == true)
                 {
                     EncPassword form = new EncPassword();
+                    string pwd = form.getPassword();
                     form.ShowDialog();
                     if (checkBox1.Checked == true)  //AES
                     {
@@ -38,14 +39,11 @@ namespace StealthCipher
                         {
                             try
                             {
-                                String pwd = form.getPassword();
                                 AES des = new AES();
                                 des.EncryptFile(textBox1.Text, pwd);
                                 GC.Collect();
                                 btn_finish.Enabled = false;
                                 Close();
-                                Stegno steg = new Stegno(textBox1.Text,pwd);
-                                steg.ShowDialog();
                             }
                             catch (Exception ex)
                             {
@@ -60,7 +58,6 @@ namespace StealthCipher
                         {
                             try
                             {
-                                String pwd = form.getPassword();
                                 String desPwd = pwd.Substring(0, 8);
                                 DES des = new DES();
                                 des.EncryptFile(textBox1.Text, desPwd);
@@ -80,7 +77,6 @@ namespace StealthCipher
                         {
                             try
                             {
-                                String pwd = form.getPassword();
                                 TripleDES tDES = new TripleDES(pwd);
                                 tDES.EncryptFile(textBox1.Text);
                                 GC.Collect();
@@ -101,6 +97,8 @@ namespace StealthCipher
                     {
 
                     }
+                    Stegno steg = new Stegno(textBox1.Text, pwd);
+                    steg.ShowDialog();
                 }
 				else
 				{

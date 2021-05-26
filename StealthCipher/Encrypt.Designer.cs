@@ -41,7 +41,6 @@ namespace StealthCipher
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -117,11 +116,10 @@ namespace StealthCipher
             this.checkBox4.AutoSize = true;
             this.checkBox4.Location = new System.Drawing.Point(12, 143);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(101, 24);
+            this.checkBox4.Size = new System.Drawing.Size(87, 24);
             this.checkBox4.TabIndex = 22;
-            this.checkBox4.Text = "checkBox4";
+            this.checkBox4.Text = "Blowfish";
             this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.Visible = false;
             this.checkBox4.CheckStateChanged += new System.EventHandler(this.checkBox4_CheckStateChanged);
             // 
             // checkBox2
@@ -160,23 +158,13 @@ namespace StealthCipher
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(10, 173);
+            this.checkBox5.Location = new System.Drawing.Point(12, 172);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(101, 24);
+            this.checkBox5.Size = new System.Drawing.Size(57, 24);
             this.checkBox5.TabIndex = 13;
-            this.checkBox5.Text = "checkBox5";
+            this.checkBox5.Text = "RC4";
             this.checkBox5.UseVisualStyleBackColor = true;
-            this.checkBox5.Visible = false;
             this.checkBox5.CheckStateChanged += new System.EventHandler(this.checkBox5_CheckStateChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(674, 412);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(50, 20);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "label9";
             // 
             // groupBox2
             // 
@@ -197,9 +185,9 @@ namespace StealthCipher
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(6, 193);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 20);
+            this.label5.Size = new System.Drawing.Size(35, 20);
             this.label5.TabIndex = 21;
-            this.label5.Text = "label5";
+            this.label5.Text = "RC4";
             this.label5.Visible = false;
             // 
             // label4
@@ -207,9 +195,9 @@ namespace StealthCipher
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 157);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 20);
+            this.label4.Size = new System.Drawing.Size(65, 20);
             this.label4.TabIndex = 20;
-            this.label4.Text = "label4";
+            this.label4.Text = "Blowfish";
             this.label4.Visible = false;
             // 
             // label3
@@ -248,7 +236,6 @@ namespace StealthCipher
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox1);
@@ -283,7 +270,6 @@ namespace StealthCipher
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
