@@ -22,18 +22,21 @@ namespace StealthCipher
                 DecPassword form = new DecPassword();
                 form.ShowDialog();
 
-                string sequence = " AES, DES, 3DES, Blowfish, RC4, 2a80796fff948117b9250d749a5873d2";
-         
-                string pwdHash = "2a80796fff948117b9250d749a5873d2";
-
                 if (form.okClicked())
                 {
+                    AuthData fd = new AuthData();
+                    string[] str = fd.removeAuthData(textBox1.Text);
+
+                    string pwdHash = str[0];
+                    string sequence = str[1];
+
                     string pwd = form.getPassword();
                     string hash;
                     using (System.Security.Cryptography.MD5 md5hash = System.Security.Cryptography.MD5.Create())
                     {
                          hash = GetMd5Hash(md5hash, pwd);
                     }
+                    Console.WriteLine("decrypt hash : " + pwdHash);
                     if(pwdHash.Equals(hash))
                     {
                         //RC4

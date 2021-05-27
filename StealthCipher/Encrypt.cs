@@ -123,7 +123,15 @@ namespace StealthCipher
                         {
                             hash = GetMd5Hash(md5hash, pwd);
                         }
-                        Stegno steg = new Stegno(textBox1.Text, hash, sequence);
+
+                        string authData = sequence + " " + hash;
+                        int authDataLen = authData.Length + 2;
+                        authData += authDataLen.ToString();
+
+                        AuthData fd = new AuthData();
+                        fd.addAuthData(textBox1.Text, authData);
+
+                        Stegno steg = new Stegno(textBox1.Text, sequence);
                         steg.ShowDialog();
                     }
                 }

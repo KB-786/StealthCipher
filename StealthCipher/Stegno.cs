@@ -15,12 +15,11 @@ namespace StealthCipher
         {
             InitializeComponent();
         }
-        public Stegno(String filePath,String hash, String sequence)
+        public Stegno(String filePath, String sequence)
         {
             InitializeComponent();
             textBox1.Text = filePath;
             label4.Text = "Algorithm(s) used: " + sequence;
-            textBox2.Text = hash;
         }
         private void btn_addFile_Click(object sender, EventArgs e)
         {
