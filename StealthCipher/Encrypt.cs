@@ -23,7 +23,6 @@ namespace StealthCipher
                 textBox1.Text = ofd.FileName;
             }
         }
-
         private void btn_finish_Click(object sender, EventArgs e)
         {
             string sequence = "";
@@ -33,9 +32,10 @@ namespace StealthCipher
                 {
                     EncPassword form = new EncPassword();
                     form.ShowDialog();
-                    string pwd = form.getPassword();
+                    
                     if (form.okClicked())
                     {
+                        string pwd = form.getPassword();
                         if (checkBox1.Checked == true)  //AES
                         {
                             try
@@ -44,7 +44,7 @@ namespace StealthCipher
                                 des.EncryptFile(textBox1.Text, pwd);
                                 GC.Collect();
                                 btn_finish.Enabled = false;
-                                sequence += "AES,";
+                                sequence += " AES,";
                             }
                             catch (Exception ex)
                             {
@@ -61,7 +61,7 @@ namespace StealthCipher
                                 des.EncryptFile(textBox1.Text, desPwd);
                                 GC.Collect();
                                 btn_finish.Enabled = false;
-                                sequence += "DES,";
+                                sequence += " DES,";
                             }
                             catch (Exception ex)
                             {
@@ -77,7 +77,7 @@ namespace StealthCipher
                                 tDES.EncryptFile(textBox1.Text);
                                 GC.Collect();
                                 btn_finish.Enabled = false;
-                                sequence += "3des,";
+                                sequence += " 3DES,";
                             }
                             catch (Exception ex)
                             {
@@ -93,7 +93,7 @@ namespace StealthCipher
                                 bf.EncryptFile(textBox1.Text, pwd);
                                 GC.Collect();
                                 btn_finish.Enabled = false;
-                                sequence += "Blowfish,";
+                                sequence += " Blowfish,";
                             }
                             catch (Exception ex)
                             {
@@ -109,7 +109,7 @@ namespace StealthCipher
                                 rc4.EncryptFile(textBox1.Text, pwd);
                                 GC.Collect();
                                 btn_finish.Enabled = false;
-                                sequence += "RC4";
+                                sequence += " RC4";
                             }
                             catch (Exception ex)
                             {

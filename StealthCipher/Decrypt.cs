@@ -22,7 +22,7 @@ namespace StealthCipher
                 DecPassword form = new DecPassword();
                 form.ShowDialog();
 
-                string sequence = "AES,DES,3des,Blowfish,RC4";
+                string sequence = " AES, DES, 3DES, Blowfish, RC4";
 
                 if (form.okClicked())
                 {
@@ -60,7 +60,7 @@ namespace StealthCipher
                     }
                     
                     //TripleDES
-                    if (sequence.Contains("3des"))
+                    if (sequence.Contains("3DES"))
                     {
                         try
                         {
@@ -76,7 +76,7 @@ namespace StealthCipher
                     }
 
                     //DES
-                    if (sequence.Contains("DES"))
+                    if (sequence.Contains(" DES"))
                     {
                         try
                         {
