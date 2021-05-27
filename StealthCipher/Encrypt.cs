@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-
+using System.Security.Cryptography;
 namespace StealthCipher
 {
     public partial class encrypt : Form
@@ -118,7 +118,12 @@ namespace StealthCipher
                             }
                         }
                         Close();
-                        Stegno steg = new Stegno(textBox1.Text, pwd, sequence);
+                        string hash;
+                        using (System.Security.Cryptography.MD5 md5hash = System.Security.Cryptography.MD5.Create())
+                        {
+                            hash = GetMd5Hash(md5hash, pwd);
+                        }
+                        Stegno steg = new Stegno(textBox1.Text, hash, sequence);
                         steg.ShowDialog();
                     }
                 }
@@ -132,7 +137,16 @@ namespace StealthCipher
 				MessageBox.Show("Please add a file to proceed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-
+        private string GetMd5Hash(System.Security.Cryptography.MD5 md5Hash, string input)
+        {
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+            StringBuilder sBuilder = new StringBuilder();
+            for(int i=0;i<data.Length;i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+            return sBuilder.ToString();
+        }
         private void checkBox1_CheckStateChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked == true)
