@@ -143,7 +143,7 @@ namespace StealthCipher
 
                         fd.setHash(textBox1.Text, hash);
 
-                        Stegno steg = new Stegno(textBox1.Text, sequence);
+                        Stegno steg = new Stegno(textBox1.Text, sequence, pwd);
                         steg.ShowDialog();
                     }
                 }

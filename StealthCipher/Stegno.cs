@@ -11,20 +11,22 @@ namespace StealthCipher
 {
     public partial class Stegno : Form
     {
+        string pwd;
         public Stegno()
         {
             InitializeComponent();
         }
-        public Stegno(String filePath, String sequence)
+        public Stegno(String filePath, String sequence, String data)
         {
             InitializeComponent();
             textBox1.Text = filePath;
             label4.Text = sequence;
+            pwd = data;
         }
         private void btn_addFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "PNG Image|*.png |BIK|*.bik";
+            ofd.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp, *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png";
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 textBox2.Text = ofd.FileName;
@@ -99,12 +101,23 @@ namespace StealthCipher
                 label2.Text = "File is successfully encrypted !!";
                 groupBox1.Enabled = true;
             }
+            string fileExt = Path.GetExtension(textBox1.Text);
+            if (!fileExt.Equals(".txt"))
+            {
+                groupBox1.Enabled = false;
+                btn_finish.Enabled = false;
+            }
         }
 
         private void btn_finish_Click(object sender, EventArgs e)
         {
             if(textBox1.Text.Length!=0 && textBox2.Text.Length!=0)
             {
+                ImgSteganography imgSteg = new ImgSteganography();
+                imgSteg.hideFile(textBox2.Text, textBox1.Text, pwd);
+                btn_finish.Enabled = false;
+                MessageBox.Show("File has been encrypted and hidden successfully !", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Close();
 
             }
             else

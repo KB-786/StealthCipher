@@ -7,7 +7,6 @@ namespace StealthCipher
 {
     class AuthData
     {
-
         public void addAuthData(string filePath, string data)
         {
             byte[] content = File.ReadAllBytes(filePath);

@@ -11,44 +11,77 @@ namespace StealthCipher
     class ImgSteganography
     {
 
-        public void hideFile(string coverFilePath, string secretFilePath)
+        public void hideFile(string coverFilePath, string secretFilePath, string pwd)
         {
-            byte[] content = File.ReadAllBytes(secretFilePath);
-
-            string strContent = Encoding.Default.GetString(content);
+            /*byte[] content = File.ReadAllBytes(secretFilePath);
+            string strContent = Encoding.Default.GetString(content);*/
+            string strContent = File.ReadAllText(secretFilePath);
 
             Bitmap image = (Bitmap)Image.FromFile(coverFilePath);
 
+            strContent = Crypto.EncryptStringAES(strContent, pwd);
+
             image = ImgSteganographyHelper.embedText(strContent, image);
 
-            String fileExt = Path.GetExtension(coverFilePath);
-            SaveFileDialog sd = new SaveFileDialog();
-            sd.Filter = "Files (*" + fileExt + ") | *" + fileExt;
-            if (sd.ShowDialog() == DialogResult.OK)
-            {
-                image.Save(coverFilePath);
-            }
+            string directory = Path.GetDirectoryName(coverFilePath);
+            string filename = Path.GetFileNameWithoutExtension(coverFilePath);
+            string fileExt = Path.GetExtension(coverFilePath);
+            int i = 1;
+            string finalpath = directory + "\\" + filename + i + fileExt;
 
-            //image.Save(savePath);
+            while (true)
+            {
+                if (File.Exists(finalpath))
+                {
+                    i++;
+                    finalpath = directory + "\\" + filename + i + fileExt;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            
+            image.Save(finalpath, ImageFormat.Bmp);
         }
 
-        public void extractFile(string filePath)
+        public string extractFile(string filePath, string pwd)
         {
             Bitmap image = (Bitmap)Image.FromFile(filePath);
 
             string content = ImgSteganographyHelper.extractText(image);
 
-            byte[] bContent = Encoding.Default.GetBytes(content);
-
-            String fileExt = ".txt";
-            SaveFileDialog sd = new SaveFileDialog();
-            sd.Filter = "Files (*" + fileExt + ") | *" + fileExt;
-            if (sd.ShowDialog() == DialogResult.OK)
+            try
             {
-                File.WriteAllBytes(filePath, bContent);
+                content = Crypto.DecryptStringAES(content, pwd);
+            }
+            catch
+            {
+                MessageBox.Show("Wrong password", "Error");
             }
 
-            //File.WriteAllBytes(savePath, bContent);
+            /*byte[] bContent = Encoding.Default.GetBytes(content);*/
+
+            string directory = Path.GetDirectoryName(filePath);
+            int i = 1;
+            string finalpath = directory + "\\" + "output" + i + ".txt";
+            while (true)
+            {
+                if (File.Exists(finalpath))
+                {
+                    i++;
+                    finalpath = directory + "\\" + "output" + i + ".txt";
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            /*File.WriteAllBytes(finalpath, bContent);*/
+            File.WriteAllText(finalpath, content);
+
+            return finalpath;
         }
 
     }

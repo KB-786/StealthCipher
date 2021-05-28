@@ -10,6 +10,7 @@ namespace StealthCipher
 {
     public partial class decrypt : Form
     {
+        bool steg;
         public decrypt()
         {
             InitializeComponent();
@@ -17,6 +18,7 @@ namespace StealthCipher
 
         private void btn_finish_Click(object sender, EventArgs e)
         {
+            string encFilepath;
             if (textBox1.Text.Length != 0)
             {
                 DecPassword form = new DecPassword();
@@ -25,21 +27,30 @@ namespace StealthCipher
                 if (form.okClicked())
                 {
                     string pwd = form.getPassword();
+                    if (steg == true)
+                    {
+                        ImgSteganography imgSteg = new ImgSteganography();
+                        encFilepath = imgSteg.extractFile(textBox1.Text, pwd);
+                    }
+                    else
+                    {
+                        encFilepath = textBox1.Text;
+                    }
                     string hash;
                     using (System.Security.Cryptography.MD5 md5hash = System.Security.Cryptography.MD5.Create())
                     {
                         hash = GetMd5Hash(md5hash, pwd);
                     }
                     AuthData fd = new AuthData();
-                    string pwdHash = fd.getHash(textBox1.Text);
+                    string pwdHash = fd.getHash(encFilepath);
 
                     if (pwdHash.Equals(hash))
                     {
-                        fd.SetFinal(textBox1.Text);
+                        fd.SetFinal(encFilepath);
                         try
                         {
                             AES aes = new AES();
-                            aes.DecryptFile(textBox1.Text, pwd);
+                            aes.DecryptFile(encFilepath, pwd);
                             GC.Collect();
                         }
                         catch (Exception ex)
@@ -47,7 +58,7 @@ namespace StealthCipher
                             MessageBox.Show("AES: " + ex.Message);
                         }
 
-                        string sequence = fd.removeAuthData(textBox1.Text);
+                        string sequence = fd.removeAuthData(encFilepath);
 
                         //RC4
                         if (sequence.Contains("RC4"))
@@ -55,7 +66,7 @@ namespace StealthCipher
                             try
                             {
                                 RC4 rc4 = new RC4();
-                                rc4.DecryptFile(textBox1.Text, pwd);
+                                rc4.DecryptFile(encFilepath, pwd);
                                 GC.Collect();
                             }
                             catch (Exception ex)
@@ -71,7 +82,7 @@ namespace StealthCipher
                             try
                             {
                                 BlowfishMain bf = new BlowfishMain();
-                                bf.DecryptFile(textBox1.Text, pwd);
+                                bf.DecryptFile(encFilepath, pwd);
                                 GC.Collect();
                             }
                             catch (Exception ex)
@@ -87,7 +98,7 @@ namespace StealthCipher
                             try
                             {
                                 TripleDES tDES = new TripleDES(pwd);
-                                tDES.DecryptFile(textBox1.Text);
+                                tDES.DecryptFile(encFilepath);
                                 GC.Collect();
                             }
                             catch (Exception ex)
@@ -104,7 +115,7 @@ namespace StealthCipher
                             {
                                 String desPwd = pwd.Substring(0, 8);
                                 DES des = new DES();
-                                des.DecryptFile(textBox1.Text, desPwd);
+                                des.DecryptFile(encFilepath, desPwd);
                                 GC.Collect();
                             }
                             catch (Exception ex)
@@ -120,7 +131,7 @@ namespace StealthCipher
                             try
                             {
                                 AES aes = new AES();
-                                aes.DecryptFile(textBox1.Text, pwd);
+                                aes.DecryptFile(encFilepath, pwd);
                                 GC.Collect();
                             }
                             catch (Exception ex)
@@ -133,6 +144,8 @@ namespace StealthCipher
                         btn_finish.Enabled = false;
                         Message.Visible = true;
                         Message.Text = "File decrypted !";
+                        MessageBox.Show("File decrypted successfully !", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Close();
                     }
                     else
                     {
@@ -157,11 +170,28 @@ namespace StealthCipher
         }
         private void btn_addFile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if(radiobtn_yes.Checked == false && radiobtn_no.Checked == false)
             {
-                textBox1.Text = ofd.FileName;
+                MessageBox.Show("Please answer the above question !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    textBox1.Text = ofd.FileName;
+                }
+            }
+        }
+
+        private void radiobtn_yes_CheckedChanged(object sender, EventArgs e)
+        {
+            steg = true;
+        }
+
+        private void radiobtn_no_CheckedChanged(object sender, EventArgs e)
+        {
+            steg = false;
         }
     }
 }

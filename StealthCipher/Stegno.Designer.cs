@@ -51,6 +51,7 @@ namespace StealthCipher
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.Preview.SuspendLayout();
             this.panelMultimedia.SuspendLayout();
@@ -252,11 +253,21 @@ namespace StealthCipher
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 410);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(340, 20);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Note: Steganography is only available for text file.";
+            // 
             // Stegno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox2);
@@ -308,5 +319,6 @@ namespace StealthCipher
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
