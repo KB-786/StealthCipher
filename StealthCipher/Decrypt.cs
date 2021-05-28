@@ -25,31 +25,30 @@ namespace StealthCipher
                 if (form.okClicked())
                 {
                     string pwd = form.getPassword();
-                    try
-                    {
-                        AES aes = new AES();
-                        aes.DecryptFile(textBox1.Text, pwd);
-                        GC.Collect();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("AES: " + ex.Message);
-                    }
-                    AuthData fd = new AuthData();
-                    string[] str = fd.removeAuthData(textBox1.Text);
-
-                    string pwdHash = str[0];
-                    string sequence = str[1];
-                    
                     string hash;
                     using (System.Security.Cryptography.MD5 md5hash = System.Security.Cryptography.MD5.Create())
                     {
-                         hash = GetMd5Hash(md5hash, pwd);
+                        hash = GetMd5Hash(md5hash, pwd);
                     }
-                    Console.WriteLine("decrypt hash : " + pwdHash);
-                    if(pwdHash.Equals(hash))
+                    AuthData fd = new AuthData();
+                    string pwdHash = fd.getHash(textBox1.Text);
+
+                    if (pwdHash.Equals(hash))
                     {
-                        
+                        fd.SetFinal(textBox1.Text);
+                        try
+                        {
+                            AES aes = new AES();
+                            aes.DecryptFile(textBox1.Text, pwd);
+                            GC.Collect();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("AES: " + ex.Message);
+                        }
+
+                        string sequence = fd.removeAuthData(textBox1.Text);
+
                         //RC4
                         if (sequence.Contains("RC4"))
                         {
@@ -137,16 +136,6 @@ namespace StealthCipher
                     }
                     else
                     {
-                        try
-                        {
-                            AES aes = new AES();
-                            aes.EncryptFile(textBox1.Text, pwd);
-                            GC.Collect();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("AES: " + ex.Message);
-                        }
                         MessageBox.Show("Incorrect password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }

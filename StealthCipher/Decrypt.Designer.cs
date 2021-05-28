@@ -49,9 +49,9 @@ namespace StealthCipher
             // 
             // btn_finish
             // 
-            this.btn_finish.Location = new System.Drawing.Point(12, 409);
+            this.btn_finish.Location = new System.Drawing.Point(12, 394);
             this.btn_finish.Name = "btn_finish";
-            this.btn_finish.Size = new System.Drawing.Size(94, 29);
+            this.btn_finish.Size = new System.Drawing.Size(150, 45);
             this.btn_finish.TabIndex = 2;
             this.btn_finish.Text = "Decrypt";
             this.btn_finish.UseVisualStyleBackColor = true;
@@ -77,7 +77,7 @@ namespace StealthCipher
             // Message
             // 
             this.Message.AutoSize = true;
-            this.Message.Location = new System.Drawing.Point(186, 413);
+            this.Message.Location = new System.Drawing.Point(201, 406);
             this.Message.Name = "Message";
             this.Message.Size = new System.Drawing.Size(67, 20);
             this.Message.TabIndex = 11;

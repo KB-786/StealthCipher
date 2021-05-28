@@ -25,7 +25,7 @@ namespace StealthCipher
         }
         private void btn_finish_Click(object sender, EventArgs e)
         {
-            string sequence = "";
+            string sequence = "Algorithm(s) used:";
 			if (textBox1.Text.Length != 0)
 			{
                 if (checkBox1.Checked == true || checkBox2.Checked == true || checkBox3.Checked == true || checkBox4.Checked == true || checkBox5.Checked == true)
@@ -124,9 +124,7 @@ namespace StealthCipher
                             hash = GetMd5Hash(md5hash, pwd);
                         }
 
-                        string authData = sequence + " " + hash;
-                        int authDataLen = authData.Length + 2;
-                        authData += authDataLen.ToString();
+                        string authData = sequence + sequence.Length;
 
                         AuthData fd = new AuthData();
                         fd.addAuthData(textBox1.Text, authData);
@@ -142,6 +140,8 @@ namespace StealthCipher
                             MessageBox.Show("AES:" + ex.Message);
                             btn_finish.Enabled = true;
                         }
+
+                        fd.setHash(textBox1.Text, hash);
 
                         Stegno steg = new Stegno(textBox1.Text, sequence);
                         steg.ShowDialog();

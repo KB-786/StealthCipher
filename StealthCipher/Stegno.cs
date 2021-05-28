@@ -19,19 +19,19 @@ namespace StealthCipher
         {
             InitializeComponent();
             textBox1.Text = filePath;
-            label4.Text = "Algorithm(s) used: " + sequence;
+            label4.Text = sequence;
         }
         private void btn_addFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            //ofd.Filter = "PNG Image|*.png |BIK|*.bik";
+            ofd.Filter = "PNG Image|*.png |BIK|*.bik";
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 textBox2.Text = ofd.FileName;
 
                 string imageExt = ".jpeg, .bmp, .png, .gif, .tif, .tiff, .ico, .ai, .psd, .svg";
-                string txtExt = ".txt,";
-                //string avExt = "";
+                /*string txtExt = ".txt,";
+                string avExt = "";*/
 
                 string fileExt = System.IO.Path.GetExtension(ofd.FileName);
                 if (imageExt.Contains(fileExt))
@@ -50,7 +50,7 @@ namespace StealthCipher
                     pictureBoxImage.Image = new Bitmap(ofd.FileName);
 
                 }
-                else if (txtExt.Contains(fileExt))
+                /*else if (txtExt.Contains(fileExt))
                 {
                     //for text files
                     panelRichTextBox.Visible = true;
@@ -77,9 +77,7 @@ namespace StealthCipher
 
                     panelRichTextBox.Visible = false;
                     panelPictureBox.Visible = false;
-
-
-                }
+                }*/
             }
         }
 
