@@ -40,8 +40,8 @@ namespace StealthCipher
                         {
                             try
                             {
-                                AES des = new AES();
-                                des.EncryptFile(textBox1.Text, pwd);
+                                AES aes = new AES();
+                                aes.EncryptFile(textBox1.Text, pwd);
                                 GC.Collect();
                                 btn_finish.Enabled = false;
                                 sequence += " AES,";
@@ -130,6 +130,18 @@ namespace StealthCipher
 
                         AuthData fd = new AuthData();
                         fd.addAuthData(textBox1.Text, authData);
+
+                        try
+                        {
+                            AES aes = new AES();
+                            aes.EncryptFile(textBox1.Text, pwd);
+                            GC.Collect();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("AES:" + ex.Message);
+                            btn_finish.Enabled = true;
+                        }
 
                         Stegno steg = new Stegno(textBox1.Text, sequence);
                         steg.ShowDialog();

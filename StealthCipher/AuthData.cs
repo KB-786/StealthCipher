@@ -32,15 +32,11 @@ namespace StealthCipher
 
             int fDataLen = Convert.ToInt32(content.Substring(n - 2, 2));
 
-
             string fData = content.Substring(n - fDataLen, fDataLen);
-
 
             string pwdHash = fData.Substring(fDataLen - 34, 32);
 
-
             string seq = fData.Substring(0, fDataLen - 34);
-
 
             string[] seqHash = new string[2];
             seqHash[0] = pwdHash;
