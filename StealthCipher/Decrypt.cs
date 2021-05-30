@@ -177,6 +177,10 @@ namespace StealthCipher
             else
             {
                 OpenFileDialog ofd = new OpenFileDialog();
+                if(steg==true)
+                {
+                    ofd.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp, *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png";
+                }
                 if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     textBox1.Text = ofd.FileName;
@@ -187,11 +191,13 @@ namespace StealthCipher
         private void radiobtn_yes_CheckedChanged(object sender, EventArgs e)
         {
             steg = true;
+            textBox1.ResetText();
         }
 
         private void radiobtn_no_CheckedChanged(object sender, EventArgs e)
         {
             steg = false;
+            textBox1.ResetText();
         }
     }
 }
